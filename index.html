@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
 
@@ -36,8 +36,23 @@
 
   <link rel="stylesheet" type="text/css" href="style.css"/>
 
+  <style>
+    #NestLoading {
+      position: fixed; inset: 0; z-index: 10; display: grid; place-content: center;
+      gap: 16px; text-align: center; color: #ffe1a3; background: #191233;
+      font: 700 16px system-ui, sans-serif; pointer-events: none;
+    }
+    #NestLoading::before {
+      content: ""; width: 37px; height: 37px; margin: auto; border-radius: 40% 55% 52% 45%;
+      background: radial-gradient(circle at 37% 28%, #ffe8a2, #75d7bb 55%, #247b83);
+      animation: nest-loading .8s ease-in-out infinite alternate;
+    }
+    @keyframes nest-loading { to { transform: translateY(-9px) scale(.95,1.05); } }
+    @media (prefers-reduced-motion: reduce) { #NestLoading::before { animation: none; } }
+  </style>
 </head>
 <body>
+  <div id="NestLoading" role="status">正在打开小窝…</div>
   <div id="GameDiv" cc_exact_fit_screen="true">
       <div id="Cocos3dGameContainer">
         <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="99"></canvas>
