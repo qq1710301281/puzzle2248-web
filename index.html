@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <link rel="preload" as="image" href="assets/resources/native/6e/6e11ba0a-a56a-477a-874d-e54cce9db04a.jpg" crossorigin="anonymous">
-  <link rel="preload" as="image" href="assets/resources/native/a4/a4f08c28-f32d-4a70-8c70-e6a43dd522fc.webp" crossorigin="anonymous">
+  <link rel="preload" as="image" href="assets/resources/native/6e/6e11ba0a-a56a-477a-874d-e54cce9db04a.webp" crossorigin="anonymous">
+  <link rel="preload" as="image" href="assets/resources/native/cd/cdf3f484-04d4-4f20-8971-ac3d1e8ca7d1.webp" crossorigin="anonymous">
 
   <title>吃不饱的史莱姆</title>
 
@@ -41,20 +41,31 @@
   <style>
     #NestLoading {
       position: fixed; inset: 0; z-index: 10; display: grid; place-content: center;
-      gap: 16px; text-align: center; color: #ffe1a3; background: #191233;
-      font: 700 16px system-ui, sans-serif; pointer-events: none;
+      justify-items: center; gap: 16px; text-align: center; color: #fff2d3;
+      background: radial-gradient(ellipse at 50% 38%, #244b86, #151c42 65%);
+      font: 700 16px system-ui, sans-serif;
     }
-    #NestLoading::before {
-      content: ""; width: 37px; height: 37px; margin: auto; border-radius: 40% 55% 52% 45%;
-      background: radial-gradient(circle at 37% 28%, #ffe8a2, #75d7bb 55%, #247b83);
-      animation: nest-loading .8s ease-in-out infinite alternate;
+    #NestProgress {
+      width: min(72vw, 300px); height: 12px; border: 0; border-radius: 10px;
+      overflow: hidden; background: #152350; accent-color: #7ff0d3;
     }
-    @keyframes nest-loading { to { transform: translateY(-9px) scale(.95,1.05); } }
-    @media (prefers-reduced-motion: reduce) { #NestLoading::before { animation: none; } }
+    #NestProgress::-webkit-progress-bar { background: #152350; }
+    #NestProgress::-webkit-progress-value {
+      background: linear-gradient(90deg, #49b7d0, #87efcc);
+      border-radius: 10px;
+    }
+    #NestProgress::-moz-progress-bar {
+      background: linear-gradient(90deg, #49b7d0, #87efcc); border-radius: 10px;
+    }
+    #NestPercent { font-size: 14px; font-variant-numeric: tabular-nums; color: #abf3e1; }
   </style>
 </head>
 <body>
-  <div id="NestLoading" role="status">正在打开小窝…</div>
+  <div id="NestLoading">
+    <span id="NestProgressLabel">正在打开小窝…</span>
+    <progress id="NestProgress" aria-labelledby="NestProgressLabel" value="0" max="5"></progress>
+    <span id="NestPercent" aria-hidden="true">0%</span>
+  </div>
   <div id="GameDiv" cc_exact_fit_screen="true">
       <div id="Cocos3dGameContainer">
         <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="99"></canvas>
