@@ -1,0 +1,1 @@
+{"importBase":"import","nativeBase":"native","name":"game-music","deps":[],"uuids":["d4Q8Ps9u5NNb6vNteFpZSF"],"paths":{"0":["audio/AmbientGameMusic_option1__122",0,1]},"scenes":{},"packs":{},"versions":{"import":[],"native":[]},"redirect":[],"debug":false,"extensionMap":{},"hasPreloadScript":true,"dependencyRelationships":{},"types":["cc.AudioClip"]}
